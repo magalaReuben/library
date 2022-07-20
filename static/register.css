@@ -1,0 +1,29 @@
+body{
+    background-color: white;
+}
+
+.box{
+    background: white;
+    position: relative;
+    margin: auto;
+    width: 450px;
+    height: 400px;
+    top: 120px;
+    border-radius: 30px;
+}
+
+.box:hover{
+    border-radius: 10px;
+}
+
+.submit_button:active{
+    background-color: red;
+}
+
+.link:active{
+    color: red;
+}
+.link{
+    text-decoration: none;
+    padding-top: 30px;
+}
