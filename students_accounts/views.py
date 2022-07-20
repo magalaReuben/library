@@ -2,7 +2,6 @@ from django.shortcuts import redirect, render
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.views import generic
-from bootstrap_modal_forms.mixins import PassRequestMixin
 from .models import User, Book, DeleteRequest,Chat,Feedback
 from django.contrib import messages
 from django.db.models import Sum
