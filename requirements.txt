@@ -1,6 +1,6 @@
 Pillow==2.2.1
 asgiref == 3.2.7
-gunicorn == *
+gunicorn == 20.1.0
 Django == 4.0.6
 asgiref == 3.5.2
 sqlparse == 0.4.2
