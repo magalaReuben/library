@@ -1,1 +1,1 @@
-web: gunicorn path/of/yourwsgit/file.wsgi
+web: gunicorn library_system/wsgi.py
