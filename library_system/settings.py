@@ -30,13 +30,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'students_accounts',
-    'bootstrap_modal_forms',
-    'widget_tweaks',
-    'bootstrap3',
-    'django_forms_bootstrap',
-    
-    
-    
 ]
 
 MIDDLEWARE = [
