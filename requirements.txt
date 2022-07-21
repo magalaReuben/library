@@ -1,6 +1,7 @@
 Pillow==2.2.1
-gunicorn==0.14.2
-django == 4.0.6
+asgiref == 3.2.7
+gunicorn == *
+Django == 4.0.6
 asgiref == 3.5.2
 sqlparse == 0.4.2
 tzdata ==2022.1
