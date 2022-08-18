@@ -21,6 +21,7 @@ urlpatterns = [
     # Librarian URLs
     path('librarian/', views.librarian, name='librarian'),
     path('labook_form/', views.labook_form, name='labook_form'),
+    path('lmbook/aluser', views.ListUserView.as_view(), name='aluser'),
     path('labook/', views.labook, name='labook'),
     path('signin/llbook', views.manage, name="manage"),
     path('labook_form/addbook', views.labook, name='labook'),
