@@ -1,9 +1,6 @@
 import time
-
 import django
-
 django.setup()
-from students_accounts.models import User, Borrowedbook
 from django.core.mail import send_mail
 
 
@@ -11,7 +8,11 @@ def check_if_users_exceeded():
     sec_in_one_day = 60 * 60 * 24
     sec_in_three_day = 60 * 60 * 24 * 3
     sec_in_ten_day = 60 * 60 * 24 * 10
-    borrowed_books = Borrowedbook.objects.all()
+    try:
+        from students_accounts.models import User, Borrowedbook
+        borrowed_books = Borrowedbook.objects.all()
+    except django.db.utils.OperationalError:
+        borrowed_books = []
     user_time_dict = {}
     day_defaulters = []
     three_day_defaulters = []
