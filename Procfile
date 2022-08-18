@@ -1,1 +1,1 @@
-web: gunicorn library_system.wsgi:application
+web: python website/manage.py runserver 0.0.0.0:$PORT
