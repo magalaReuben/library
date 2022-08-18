@@ -1,61 +1,63 @@
+{% load static %}
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap" rel="stylesheet">
+    <!-- OWL CAROUSEL -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" />
+    <!-- BOX ICONS -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <!-- APP CSS -->
+    <link rel="stylesheet" href="{% static 'grid.css' %}">
+    <link rel="stylesheet" href="{% static 'app.css' %}">
     <title>Document</title>
 </head>
 
 <body>
-    <h1 style="margin-left:600px;">Add Book</h1>
-
-    </div>
-    <div class="card-body">
-        <form class="forms" method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class="form-group">
-                <div class="col"><input type="text" class="form-control" name="title" placeholder="Book Title" required="required"></div>
+    <div class="section">
+        <div>
+            <div class="hero-slide-item-content">
+                <div >
+                    <div class="item-content-title">
+                        Add Book
+                    </div>
+                        <form class="forms" method="POST" action="addbook" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <div ><input type="text" class="form-control" name="title" placeholder="Book Title" required="required"></div>
+                                </div>
+                                <div class="form-group">
+                                    <div><input type="text" class="form-control" name="author" placeholder="Author" required="required"></div>
+                                </div>
+                                <div class="form-group">
+                                    <div ><input type="text" class="form-control" name="publisher" placeholder="Publisher" required="required"></div>
+                                </div>
+                                <div class="form-group">
+                                    <div><input type="text" class="form-control" name="year" placeholder="Publication Year" required="required"></div>
+                                </div>
+                                <div class="form-group">
+                                    <div><input type="text" class="form-control" name="desc" placeholder="Book Description" required="required"></div>
+                                </div>
+                                <div class="form-group">
+                                    <div >
+                                        <label>Choose Book Cover</label>
+                                        <input type="file" id="myFile" name="cover" placeholder="Report Attachment" enctype="multipart/form-data">
+                                    </div>
+                                </div>
+                    <div class="form-group">
+                </div>
+                <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-lg btn-block" href="addbook">Add Book</button>
+                    </div>
+                         </form>
+                </div>
             </div>
-            <div class="form-group">
-                <div class="col"><input type="text" class="form-control" name="author" placeholder="Author" required="required"></div>
-            </div>
-
-            <div class="form-group">
-                <div class="col"><input type="text" class="form-control" name="publisher" placeholder="Publisher" required="required"></div>
-            </div>
-
-            <div class="form-group">
-                <div class="col"><input type="text" class="form-control" name="year" placeholder="Publication Year" required="required"></div>
-            </div>
-
-            <div class="form-group">
-                <div class="col"><input type="text" class="form-control" name="desc" placeholder="Book Description" required="required"></div>
-            </div>
-
-
-            <div class="form-group">
-                <div class="col"><label>Choose Book Cover</label>
-                    <input type="file" id="myFile" name="cover" placeholder="Report Attachment" enctype="multipart/form-data"></div>
-            </div>
-
-            <div class="form-group">
-
-            </div>
-
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-lg btn-block" href="labook">Add Now</button>
-            </div>
-        </form>
-
-    </div>
-    </div>
-
-
+        </div>
 </body>
 <style>
     .forms {
-        margin-left: 600px;
+        margin-left: 20px;
     }
 </style>
 
