@@ -1,98 +1,668 @@
+{% load static %}
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>FRONTEND LIBRARY</title>
+    <title>
+        BookBox
+    </title>
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap" rel="stylesheet">
+    <!-- OWL CAROUSEL -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" />
+    <!-- BOX ICONS -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <!-- APP CSS -->
+    <link rel="stylesheet" href="{% static 'grid.css' %}">
+    <link rel="stylesheet" href="{% static 'app.css' %}">
 </head>
 
 <body>
-    <h1>Library</h1>
-    <!--break-->
-    <nav class="navbar navbar-light bg-dark">
-        <div class="container-fluid">
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Book title" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-                <button class="logout" type="submit" href="logout">logout</button>
-            </form>
-        </div>
-    </nav>
-    <!--section2-->
-    <br>
+    {% for d in df %}{{ d.name }}{% if not forloop.last %}, {% endif %}{% endfor %}
 
-    <div>
-        <div class="blocks">
-            <img src="https://images-na.ssl-images-amazon.com/images/I/41xShlnTZTL._SX376_BO1,204,203,200_.jpg" alt="" width="180px">
-            <p>Clean Code</p>
+    {% if messages %}
+        {% for message in messages %}
+                <div class="alert alert-{{ message.tags}}"> {{ message }}</div>
+        {% endfor %}
+    {% endif %}
+    <!-- NAV -->
+    <div class="nav-wrapper">
+        <div class="container">
+            <div class="nav">
+                <a href="#" class="logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
+                        <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
+                    </svg>
+                    <i class='bx bx-movie-playbx-tada main-color'></i><span class="main-color">Bo</span>ok
+                    <span class="main-color">Bo</span>x
+                </a>
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Top</a></li>
+                    <form class="col-6 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                        <input type="search" class="form-control" placeholder="Search" aria-label="Search">
+                    </form>
+                    <li>
+                        <a class="btn btn-hover" type="submit" href="logout">
+                            <span>LOGOUT</span>
+                        </a>
+                    </li>
+                </ul>
+                <!-- MOBILE MENU TOGGLE -->
+                <div class="hamburger-menu" id="hamburger-menu">
+                    <div class="hamburger"></div>
+                </div>
+            </div>
         </div>
-        <div class="blocks"><img src="https://deepreinforcementlearningbook.org/assets/images/cover_v1.png" alt="" width="180px">
-            <p>Reinforcement Learning</p>
-        </div>
-        <div class="blocks"><img src="https://m.media-amazon.com/images/P/B00CTZ290I.01._SCLZZZZZZZ_SX500_.jpg" alt="" width="180px">
-            <p>Data Structures And Algorithims</p>
-        </div>
-        <div class="blocks"><img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1391032531i/515601.jpg" alt="" width="180px">
-            <p>C programming</p>
-        </div>
-        <div class="blocks"><img src="https://images-na.ssl-images-amazon.com/images/I/51W1bWzFu+L._SX383_BO1,204,203,200_.jpg" alt="" width="180px">
-            <p>Distributed Computing System</p>
-        </div>
-        <div class="blocks"><img src="https://images-na.ssl-images-amazon.com/images/I/41qmoD18zZL._SY344_BO1,204,203,200_.jpg" alt="" width="180px">
-            <p>Autonomous Robotics</p>
-        </div>
-        <div class="blocks"><img src="https://images-na.ssl-images-amazon.com/images/I/51u+tYbBQLL._SX327_BO1,204,203,200_.jpg" alt="" width="180px">
-            <p>Imitation Game</p>
-        </div>
-        <div class="blocks"><img src="https://images-na.ssl-images-amazon.com/images/I/51EE19kiTFL._SX311_BO1,204,203,200_.jpg" alt="" width="180px">
-            <p>Computability Approach</p>
-        </div>
-        <div class="blocks"><img src="https://images-na.ssl-images-amazon.com/images/I/41meVhRo7dL._SX326_BO1,204,203,200_.jpg" alt="" width="180px">
-            <p>Brains, Machines and mathematics</p>
-        </div>
-        <div class="blocks"><img src="https://images-na.ssl-images-amazon.com/images/I/419vA469DCL._SX331_BO1,204,203,200_.jpg" alt="" width="180px">
-            <p>Smart Card Research</p>
-        </div>
-
-        <button class="btn btn-outline-success" style="margin-left:1200px  ; margin-top: 50px;margin-bottom: 50px;" type="submit">Next...</button>
-
-
-
-
-
     </div>
+    <!-- END NAV -->
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <!-- HERO SECTION -->
+    <div class="hero-section">
+        <!-- HERO SLIDE -->
+        <div class="hero-slide">
+            <div class="owl-carousel carousel-nav-center" id="hero-carousel">
+                <!-- SLIDE ITEM -->
+                <div class="hero-slide-item">
+                    <img src="https://m.media-amazon.com/images/I/513UmJY4jbL._SL500_.jpg" alt="">
+                    <div class="overlay"></div>
+                    <div class="hero-slide-item-content">
+                        <div class="item-content-wraper">
+                            <div class="item-content-title top-down">
+                                Science
+                            </div>
+                            <div class="item-content-description top-down delay-4">
+                                We got all science books from computer shit to comedic science we are the best in this business with vast experience in most of the stuff and we gat the best customer experience, Borrow a book to continue with the journey.
+                            </div>
+                            <div class="item-action top-down delay-6">
+                                <a href="#" class="btn btn-hover">
+                                    <span>Explore</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END SLIDE ITEM -->
+                <!-- SLIDE ITEM -->
+                <div class="hero-slide-item">
+                    <img src="https://www.bookaapi.com/wp-content/uploads/2020/01/top-10-romantic-novels-by-indian-authors-1.png" alt="">
+                    <div class="overlay"></div>
+                    <div class="hero-slide-item-content">
+                        <div class="item-content-wraper">
+                            <div class="item-content-title top-down">
+                                Erotic Romance
+                            </div>
+                            <div class="item-content-description top-down delay-4">
+                                Do you want to become a star at your own game then this is it just hoop on and we will make you the best you can be, we believe every type of information is relevant and important for a society to thrive and keep our glorious civilization and the human race alive .
+                            </div>
+                            <div class="item-action top-down delay-6">
+                                <a href="#" class="btn btn-hover">
+                                    <span>Explore</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END SLIDE ITEM -->
+                <!-- SLIDE ITEM -->
+                <div class="hero-slide-item">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrjB-GfkNKMEmeuHi0uOQ3k2ZlWLvFOG8OIA&usqp=CAU" alt="">
+                    <div class="overlay"></div>
+                    <div class="hero-slide-item-content">
+                        <div class="item-content-wraper">
+                            <div class="item-content-title top-down">
+                                Geographic
+                            </div>
+                            <div class="item-content-description top-down delay-4">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, possimus eius. Deserunt non odit, cum vero reprehenderit laudantium odio vitae autem quam, incidunt molestias ratione mollitia accusantium, facere ab suscipit.
+                            </div>
+                            <div class="item-action top-down delay-6">
+                                <a href="#" class="btn btn-hover">
+                                    <span>Explore</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END SLIDE ITEM -->
+            </div>
+        </div>
+        <!-- END HERO SLIDE -->
+        <!-- TOP MOVIES SLIDE -->
+        <div class="top-movies-slide">
+            <div class="owl-carousel" id="top-movies-slide">
+                <!-- MOVIE ITEM -->
+                <div class="movie-item">
+                    <img src="https://images-na.ssl-images-amazon.com/images/I/81jMGG8Rp8L.jpg" alt="">
+                    <div class="movie-item-content">
+                        <div class="movie-item-title">
+                            Data Structures and algorithims in C++
+                        </div>
+                        <div class="movie-infos">
+                            <div class="movie-info">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+                                        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                                </svg>
+                                <span>1998</span>
+                            </div>
+                            <div class="movie-info">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                                        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                                </svg>
+                                <span>Clifford A Shaffer</span>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-book ml-2" viewBox="0 0 16 16">
+                                    <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
+                            </svg>
+                            <div class="movie-info">
+                                <span>FAIR</span>
+                            </div>
+                        </div>
+                        <div class="item-action top-down delay-6">
+                            <a href="borrow/Data Structures and algorithims in C++/1998/Lee Yun Cun/FAIR" class="btn btn-hover">
+                                <span>Borrow</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- END MOVIE ITEM -->
+                <!-- MOVIE ITEM -->
+                <div class="movie-item">
+                    <img src="https://i.imgur.com/xWPC26m.png" alt="">
+                    <div class="movie-item-content">
+                        <div class="movie-item-title">
+                            Dynamic Website Design In Assembly - You would rather kill your self
+                        </div>
+                        <div class="movie-infos">
+                            <div class="movie-info">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+                                        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                                </svg>
+                                <span>1998</span>
+                            </div>
+                            <div class="movie-info">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                                        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                                </svg>
+                                <span>Kevin Edgorganfinish</span>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-book ml-2" viewBox="0 0 16 16">
+                                    <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
+                            </svg>
+                            <div class="movie-info">
+                                <span>O'Reily</span>
+                            </div>
+                        </div>
+                        <div class="item-action top-down FAIRdelay-6">
+                            <a href="borrow/Dynamic Website Design In Assembly - You would rather kill your self/1998/Kevin Edgorganfinish/O'Reily" class="btn btn-hover">
+                                <span>Borrow</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- END MOVIE ITEM -->
+                <!-- MOVIE ITEM -->
+                <div class="movie-item">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZrvhkMydoY2Dme0ptM23RwSRPrKIPRBRaBA&usqp=CAU" alt="">
+                    <div class="movie-item-content">
+                        <div class="movie-item-title">
+                            Programming In Brain Fuck
+                        </div>
+                        <div class="movie-infos">
+                            <div class="movie-info">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+                                        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                                </svg>
+                                <span>2006</span>
+                            </div>
+                            <div class="movie-info">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                                        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                                </svg>
+                                <span>Jonathan Brain</span>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-book ml-2" viewBox="0 0 16 16">
+                                    <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
+                            </svg>
+                            <div class="movie-info">
+                                <span>Self Published</span>
+                            </div>
+                        </div>
+                        <div class="item-action top-down delay-6">
+                            <a href="Programming In Brain Fuck/2006/Jonathan Brain/Self Published" class="btn btn-hover">
+                                <span>Borrow</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- END MOVIE ITEM -->
+                <!-- MOVIE ITEM -->
+                <div class="movie-item">
+                    <img src="data:image/jpeg;base64,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" alt="">
+                    <div class="movie-item-content">
+                        <div class="movie-item-title">
+                            Why Programmers Have No Girlfriends
+                        </div>
+                        <div class="movie-infos">
+                            <div class="movie-info">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+                                        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                                </svg>
+                                <span>2022</span>
+                            </div>
+                            <div class="movie-info">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                                        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                                </svg>
+                                <span>BBC Jonah</span>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-book ml-2" viewBox="0 0 16 16">
+                                    <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
+                            </svg>
+                            <div class="movie-info">
+                                <span>Turnings Research</span>
+                            </div>
+                        </div>
+                        <div class="item-action top-down delay-6">
+                            <a href="Why Programmers Have No Girlfriends/2022/BBC Jonah/Turnings Research" class="btn btn-hover">
+                                <span>Borrow</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- END MOVIE ITEM -->
+                <!-- MOVIE ITEM -->
+                <div class="movie-item">
+                    <img src="https://images-na.ssl-images-amazon.com/images/I/81ibTiIsSaL.jpg" alt="">
+                    <div class="movie-item-content">
+                        <div class="movie-item-title">
+                            Ethical Hacking For Bank Thieves
+                        </div>
+                        <div class="item-action top-down delay-6">
+                            <a href="Ethical Hacking for Bank Thieves/2022/BBC Jonah/Turnings Research" class="btn btn-hover">
+                                <span>Borrow</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- END MOVIE ITEM -->
+                <!-- MOVIE ITEM -->
+                <div class="movie-item">
+                    <img src="https://www.cheatsheet.com/wp-content/uploads/2017/09/GettyImages-477483948.jpg" alt="">
+                    <div class="movie-item-content">
+                        <div class="movie-item-title">
+                            Why Programmers At Apple Killed Themselves in The Design Of The Macintosh
+                        </div>
+                        <div class="movie-infos">
+                            <div class="movie-info">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+                                        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                                </svg>
+                                <span>1996</span>
+                            </div>
+                            <div class="movie-info">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                                        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                                </svg>
+                                <span>BBC Investigation</span>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-book ml-2" viewBox="0 0 16 16">
+                                    <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
+                            </svg>
+                            <div class="movie-info">
+                                <span>BBC print</span>
+                            </div>
+                        </div>
+                        <div class="item-action top-down delay-6">
+                            <a href="Why Programmers At Apple Killed Themselves in The Design Of The Macintosh/1996/BBC Print/BBC Investigations" class="btn btn-hover">
+                                <span>Borrow</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- END MOVIE ITEM -->
+            </div>
+        </div>
+        <!-- END TOP MOVIES SLIDE -->
+    </div>
+    <!-- END HERO SECTION -->
+
+    <!-- LATEST MOVIES SECTION -->
+    <div class="section">
+        <div class="container">
+            <div class="section-header">
+                Physics and Deep Learning
+            </div>
+            <div class="movies-slide carousel-nav-center owl-carousel">
+                <!-- MOVIE ITEM -->
+                <a href="#" class="movie-item">
+                    <img src="https://m.media-amazon.com/images/I/513UmJY4jbL._SL500_.jpg" alt="">
+                    <div class="movie-item-content">
+                        <div class="movie-item-title">
+                            A brief History of Time
+                        </div>
+                        <div class="movie-infos">
+                            <div class="movie-info">
+                                <span>stephen Hawkings</span>
+                            </div>
+                            <div class="movie-info">
+                            </div>
+                            <div class="movie-info">
+                                <span>Cambridge press</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <!-- END MOVIE ITEM -->
+                <!-- MOVIE ITEM -->
+                <a href="#" class="movie-item">
+                    <img src="https://images-na.ssl-images-amazon.com/images/I/51oO+QotZrL._SY344_BO1,204,203,200_.jpg" alt="">
+                    <div class="movie-item-content">
+                        <div class="movie-item-title">
+                            QED
+                        </div>
+                        <div class="movie-infos">
+                            <div class="movie-info">
+                                <i class="bx bxs-star"></i>
+                                <span>Richard Feynmann</span>
+                            </div>
+                            <div class="movie-info">
+                                <span>PSL</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <!-- END MOVIE ITEM -->
+                <!-- MOVIE ITEM -->
+                <a href="#" class="movie-item">
+                    <img src="https://m.media-amazon.com/images/P/0465062903.01._SCLZZZZZZZ_SX500_.jpg" alt="">
+                    <div class="movie-item-content">
+                        <div class="movie-item-title">
+                            Quantum Mechanics
+                        </div>
+                        <div class="movie-infos">
+                            <div class="movie-info">
+                                <i class="bx bxs-star"></i>
+                                <span>Leonard Susskind</span>
+                            </div>
+                            <div class="movie-info">
+                                <span>Stanford Press</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <!-- END MOVIE ITEM -->
+                <!-- MOVIE ITEM -->
+                <a href="#" class="movie-item">
+                    <img src="https://images-na.ssl-images-amazon.com/images/I/81RpQyR0xQS.jpg" alt="">
+                    <div class="movie-item-content">
+                        <div class="movie-item-title">
+                            Foundations Of Deep Reinforcement Learning
+                        </div>
+                        <div class="movie-infos">
+                            <div class="movie-info">
+                                <i class="bx bxs-star"></i>
+                                <span>Woh Lun Keng</span>
+                            </div>
+                            <div class="movie-info">
+                                <span>Adison Wisely</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <!-- END MOVIE ITEM -->
+                <!-- MOVIE ITEM -->
+                <a href="#" class="movie-item">
+                    <img src="https://images-na.ssl-images-amazon.com/images/I/416KapTtFjL._SX379_BO1,204,203,200_.jpg" alt="">
+                    <div class="movie-item-content">
+                        <div class="movie-item-title">
+                            Generative Deep Learning
+                        </div>
+                        <div class="movie-infos">
+                            <div class="movie-info">
+                                <i class="bx bxs-star"></i>
+                                <span>David Foster</span>
+                            </div>
+                            <div class="movie-info">
+                                <span>O'reily</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <!-- END MOVIE ITEM -->
+                <!-- MOVIE ITEM -->
+                <a href="#" class="movie-item">
+                    <img src="https://images-na.ssl-images-amazon.com/images/I/81sSBzp8Z2L.jpg" alt="">
+                    <div class="movie-item-content">
+                        <div class="movie-item-title">
+                            NLP With Transformers
+                        </div>
+                        <div class="movie-infos">
+                            <div class="movie-info">
+                                <i class="bx bxs-star"></i>
+                                <span>Lewis Tunstall</span>
+                            </div>
+                            <div class="movie-info">
+                                <span>O'Reily</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <!-- END MOVIE ITEM -->
+                <!-- MOVIE ITEM -->
+                <a href="#" class="movie-item">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKo4HSQSVgRWM5lzaSV8zMRk6fb0sNNWw00w&usqp=CAU" alt="">
+                    <div class="movie-item-content">
+                        <div class="movie-item-title">
+                            Principia Mathematica
+                        </div>
+                        <div class="movie-infos">
+                            <div class="movie-info">
+                                <i class="bx bxs-star"></i>
+                                <span>Isaac Newton</span>
+                            </div>
+                            <div class="movie-info">
+                                <span>Cambridge Press</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="container">
+            <div class="section-header">
+                UPLOADED
+            </div>
+            <div class="movies-slide carousel-nav-center owl-carousel">
+                {% for book in books %}
+                    <a href="#" class="movie-item">
+                    <img src={{book.Cover}} alt="">
+                    <div class="movie-item-content">
+                        <div class="movie-item-title">
+                            {{book.title}}
+                        </div>
+                        <div class="movie-infos">
+                            <div class="movie-info">
+                                <i class="bx bxs-star"></i>
+                                <span>{{book.author}}</span>
+                            </div>
+                            <div class="movie-info">
+                                <span>{{book.publisher}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                {% if not forloop.last %},
+                {% endif %}{% endfor %}
+            </div>
+
+    <div class="section">
+        <div class="container">
+            <div class="pricing">
+                <div class="pricing-header">
+                    <span class="main-color">Bo</span>ok <span class="main-color">Bo</span>x pricing
+                </div>
+                <div class="pricing-list">
+                    <div class="row">
+                        <div class="col-4 col-md-12 col-sm-12">
+                            <div class="pricing-box">
+                                <div class="pricing-box-header">
+                                    <div class="pricing-name">
+                                        Basic
+                                    </div>
+                                    <div class="pricing-price">
+                                        Free
+                                    </div>
+                                </div>
+                                <div class="pricing-box-content">
+                                    <p> Three Books per day</p>
+                                    <p>3 day return date</p>
+                                </div>
+                                <div class="pricing-box-action">
+                                    <a href="#" class="btn btn-hover">
+                                        <span>Free</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 col-md-12 col-sm-12">
+                            <div class="pricing-box hightlight">
+                                <div class="pricing-box-header">
+                                    <div class="pricing-name">
+                                        Premium
+                                    </div>
+                                    <div class="pricing-price">
+                                        $35.99 <span>/month</span>
+                                    </div>
+                                </div>
+                                <div class="pricing-box-content">
+                                    <p>Unlimited Borrowing</p>
+                                    <p>Return anytime</p>
+                                </div>
+                                <div class="pricing-box-action">
+                                    <a href="#" class="btn btn-hover">
+                                        <span>Coming Soon</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END PRICING SECTION -->
+
+    <!-- FOOTER SECTION -->
+    <footer class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-4 col-md-6 col-sm-12">
+                    <div class="content">
+                        <a href="#" class="logo">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
+                            <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
+                            </svg>
+                            <span class="main-color">Bo</span>ok
+                            <span class="main-color">Bo</span>x
+                        </a>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut veniam ex quos hic id nobis beatae earum sapiente! Quod ipsa exercitationem officiis non error illum minima iusto et. Dolores, quibusdam?
+                        </p>
+                        <div class="social-list">
+                            <a href="#" class="social-item">
+                                <i class="bx bxl-facebook"></i>
+                            </a>
+                            <a href="#" class="social-item">
+                                <i class="bx bxl-twitter"></i>
+                            </a>
+                            <a href="#" class="social-item">
+                                <i class="bx bxl-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-8 col-md-6 col-sm-12">
+                    <div class="row">
+                        <div class="col-3 col-md-6 col-sm-6">
+                            <div class="content">
+                                <p><b>Book Box</b></p>
+                                <ul class="footer-menu">
+                                    <li><a href="#">About us</a></li>
+                                    <li><a href="#">My profile</a></li>
+                                    <li><a href="#">Pricing plans</a></li>
+                                    <li><a href="#">Contacts</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-3 col-md-6 col-sm-6">
+                            <div class="content">
+                                <p><b>Browse</b></p>
+                                <ul class="footer-menu">
+                                    <li><a href="#">About us</a></li>
+                                    <li><a href="#">My profile</a></li>
+                                    <li><a href="#">Pricing plans</a></li>
+                                    <li><a href="#">Contacts</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-3 col-md-6 col-sm-6">
+                            <div class="content">
+                                <p><b>Help</b></p>
+                                <ul class="footer-menu">
+                                    <li><a href="#">About us</a></li>
+                                    <li><a href="#">My profile</a></li>
+                                    <li><a href="#">Pricing plans</a></li>
+                                    <li><a href="#">Contacts</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-3 col-md-6 col-sm-6">
+                            <div class="content">
+                                <p><b>Download app</b></p>
+                                <ul class="footer-menu">
+                                    <li>
+                                        <a href="#">
+                                            <img src="./images/google-play.png" alt="">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="./images/app-store.png" alt="">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- END FOOTER SECTION -->
+
+    <!-- COPYRIGHT SECTION -->
+    <div class="copyright">
+        Copyright 2021 <a href="https://www.youtube.com" target="_blank">
+            Blaq Cosmos</a>
+    </div>
+    <!-- END COPYRIGHT SECTION -->
+
+    <!-- SCRIPT -->
+    <!-- JQUERY -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <!-- OWL CAROUSEL -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous"></script>
+    <!-- APP SCRIPT -->
+    <script src="{% static 'app.js' %}"></script>
+
 </body>
-<style>
-    .logout {
-        background-color: white;
-        margin-left: 1000px;
-        color: rgb(25, 24, 24);
-        border: 0px;
-        border-radius: 5px;
-    }
-    
-    .logout:hover {
-        background-color: rgb(8, 96, 8);
-        ;
-        border-color: rgb(8, 96, 8);
-        color: rgb(253, 253, 253);
-        ;
-        text-align: center;
-        opacity: 0.6;
-        transition: 0.3s;
-    }
-    
-    .blocks {
-        display: inline-block;
-        margin-left: 60px;
-        height: 50px;
-    }
-    
-    class="btn btn-outline-success"
-</style>
 
 </html>

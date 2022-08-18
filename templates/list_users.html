@@ -1,4 +1,4 @@
-{% extends 'dashboard/base.html' %}
+{% extends 'librarian/base.html' %}
 
 {% block body %}
 
@@ -11,7 +11,7 @@
         <div class="container-fluid">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                    <a href="">Staff Members</a>
+                    <a href="" style="color:'black'">Staff Members</a>
                 </li>
                 <li class="breadcrumb-item active"></li>
             </ol>
@@ -28,7 +28,7 @@
                         </div>
                     {% endfor %}
                     <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <table class="table table-bordered table-dark" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                             <tr>
                                 <th>No</th>
@@ -62,11 +62,11 @@
                  </td>
                 <td>
                 <a href="{% url 'aeuser' user.pk %}"><button type="button" class="btn btn-warning"> Edit</button></a>
-        </td>
-        <td>
-          <a href="{% url 'aduser' user.pk %}"><button type="button" class="btn btn-danger"> Delete</button></a></td>
-                                </tr>
-                            {% endfor %}
+                </td>
+                <td>
+                    <a href="{% url 'aduser' user.pk %}"><button type="button" class="btn btn-danger"> Delete</button></a></td>
+                </tr>
+                        {% endfor %}
                         {% endif %}
                             </tbody>
                         </table>
